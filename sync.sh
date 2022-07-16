@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
  
 # Kernel Sources!
-git clone --depth=1 $GH_TOKEN@github.com/c3eru/kernel -b MIUI $CIRRUS_WORKING_DIR/KERNEL
+git clone --depth=1 $GH_TOKEN@github.com/c3eru/kernel -b MIUI-CITRUS-stg $CIRRUS_WORKING_DIR/KERNEL
 
 # Tool Chain
 # Proton Clang ---
