@@ -12,5 +12,5 @@ git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang $CIRRUS_WORKI
 mkdir $CIRRUS_WORKING_DIR/AOSP-CLANG
 cd $CIRRUS_WORKING_DIR/AOSP-CLANG || exit
 wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r450784e.tar.gz
-tar -xf *clang*
+tar -xf clang*
 cd .. || exit

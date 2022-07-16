@@ -58,14 +58,14 @@ function push() {
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$KERNEL_NAME
-==========================
+=======================
 🏚️ Linux version: $KERNEL_VERSION
 🌿 Branch: $BRANCH
 🎁 Top commit: $LATEST_COMMIT
 👩‍💻 Commit author: $COMMIT_BY
 🐧 UTS version: $UTS_VERSION
 💡 Compiler: $TOOLCHAIN_VERSION
-==========================
+=======================
 Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
 rm -rf *.zip
 }
