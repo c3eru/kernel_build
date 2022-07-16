@@ -1,0 +1,38 @@
+env: 
+#  ENCRYPTED
+    USER_NAME: "ENCRYPTED[41352a238460d03adfac9ebfbdbc78c55bdb6b3be1b61ae21531a60fbeb297cbbd168cba0a11bd67d4ab411eaefe6db7]"
+    USER_EMAIL: "ENCRYPTED[9f41f213a0353f14f93a5ba3555fe72a6870bd65c863e065a81c9721e287c9d39bfc15d1cd376ad926812d9d5ced41a5]"
+    BUILD_USER: "ENCRYPTED[07456d2b26ed65367293a86f782994d6dd2cbf3dfd84c8f7fb78d6ad3da76c0e100cb389ef04993c3eb152a23af0ee75]"
+    BUILD_HOST: "ENCRYPTED[cd22fd1dc1fbbdbf617797e2f2e8fcf9b3d3ea13f4e76230b17cbed01e69320e4a2fef9b1e46c24b1e7bed9386debabc]"
+    TG_TOKEN: "ENCRYPTED[3d4b1aeee0e15475b8e1f7d986c4a13de684b91dc28634f6b4cd103b122363c67b6c659636176ae470dd9370bc8c5bc1]"
+    TG_CHAT_ID: "ENCRYPTED[cb9899b3b249f589c980511fe6bee685c6519744974748bf10beeb79fc750f08df098d1dada15b93818544136a39246a]"
+    GH_TOKEN: "ENCRYPTED[9ebbbfc9acfe07c964292c48071abe3e4ae56290a911b91277df47fef5b3d09f26225cbc41d8945f888a8890d06214ce]"
+    
+#  CIRRUS CONFIG
+    CIRRUS_CLONE_DEPTH: 1
+    CIRRUS_WORKING_DIR: /tmp/cirrus-ci-build
+       
+task:
+  name: "Kernel deploy..."
+  timeout_in: 2h
+  container:
+      image: aarunalr/aosp-build
+      cpu: 8
+      memory: 32G
+
+  Environment_script:
+      - export DEBIAN_FRONTEND=noninteractive
+      - cat /etc/os*
+      - env
+      - git config --global user.name "$USER_NAME"
+      - git config --global user.email "$USER_EMAIL"
+      - export TZ=Asia/Jakarta
+
+  Sync_script:
+      - ./sync.sh
+
+  Compile_Proton_script:
+      - ./proton-compile.sh
+      
+  Compile_Azure_script:
+      - ./azure-compile.sh
