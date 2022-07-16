@@ -36,6 +36,3 @@ task:
       
   Clang_Azure_script:
       - ./azure-compile.sh
-      
-  Clang_Greenforce_script:
-      - ./gf-compile.sh
