@@ -67,6 +67,7 @@ function push() {
 💡 Compiler: $TOOLCHAIN_VERSION
 ==========================
 Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
+rm -rf *.zip
 }
 
 # Fin Error
