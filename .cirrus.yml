@@ -33,6 +33,8 @@ task:
 
   Compile_Proton_script:
       - ./proton-compile.sh
+      - ./remove.sh
       
   Compile_Azure_script:
       - ./azure-compile.sh
+      - ./remove.sh
