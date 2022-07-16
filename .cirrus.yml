@@ -31,11 +31,11 @@ task:
   Sync_script:
       - ./sync.sh
 
-  Compile_Proton_script:
+  Clang_Proton_script:
       - ./proton-compile.sh
       
-  Compile_Azure_script:
+  Clang_Azure_script:
       - ./azure-compile.sh
       
-  Compile_Aosp_script:
-      - ./aosp-compile.sh
+  Clang_Greenforce_script:
+      - ./gf-compile.sh

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
  
 # Main Declaration
-function env() {
+function ENVIRONTMENT() {
 export KERNEL_NAME=PERF-AZURE
 export KBUILD_BUILD_USER=$BUILD_USER
 export KBUILD_BUILD_HOST=$BUILD_HOST
@@ -21,7 +21,7 @@ START=$(date +"%s")
 
 # Checking environtment
 # Warning !! Dont Change anything there without known reason.
-function check() {
+function CHECK() {
 echo ================================================
 echo BUILDER NAME = ${KBUILD_BUILD_USER}
 echo BUILDER HOSTNAME = ${KBUILD_BUILD_HOST}
@@ -33,31 +33,37 @@ echo ================================================
 }
 
 # Compile
-compile(){
+COMPILE(){
 cd ${KERNEL_ROOTDIR}
-    make -j$(nproc) O=out ARCH=arm64 SUBARCH=arm64 ${DEVICE_DEFCONFIG}
-    make -j$(nproc) ARCH=arm64 SUBARCH=arm64 O=out \
-    CC=${CLANG_ROOTDIR}/bin/clang \
-    LD=${CLANG_ROOTDIR}/bin/ld.lld \
-    CROSS_COMPILE=${CLANG_ROOTDIR}/bin/aarch64-linux-gnu- \
-    CROSS_COMPILE_ARM32=${CLANG_ROOTDIR}/bin/arm-linux-gnueabi-
-   if ! [ -a "$IMGS" ]; then
-	finerr
-   fi
-   git clone --depth=1 $GH_TOKEN@github.com/c3eru/anykernel -b patch $CIRRUS_WORKING_DIR/AnyKernel
-   cp $IMGS $CIRRUS_WORKING_DIR/AnyKernel
+
+make -j$(nproc) O=out ARCH=arm64 SUBARCH=arm64 ${DEVICE_DEFCONFIG}
+make -j$(nproc) ARCH=arm64 SUBARCH=arm64 O=out \
+
+CC=${CLANG_ROOTDIR}/bin/clang \
+LD=${CLANG_ROOTDIR}/bin/ld.lld \
+CROSS_COMPILE=${CLANG_ROOTDIR}/bin/aarch64-linux-gnu- \
+CROSS_COMPILE_ARM32=${CLANG_ROOTDIR}/bin/arm-linux-gnueabi-
+
+if ! [ -a "$IMGS" ]; then
+FIN-ERROR
+fi
+
+git clone --depth=1 $GH_TOKEN@github.com/c3eru/anykernel -b patch $CIRRUS_WORKING_DIR/AnyKernel
+
+cp $IMGS $CIRRUS_WORKING_DIR/AnyKernel
 }
 
 # Push kernel to channel
-function push() {
-    cd $CIRRUS_WORKING_DIR/AnyKernel
-    zip -r9 $KERNEL_NAME-${DATE}.zip *
-    ZIP=$(echo *.zip)
-    curl -F document=@$ZIP "https://api.telegram.org/$TG_TOKEN/sendDocument" \
-        -F chat_id="$TG_CHAT_ID" \
-        -F "disable_web_page_preview=true" \
-        -F "parse_mode=html" \
-        -F caption="$KERNEL_NAME
+function PUSH() {
+cd $CIRRUS_WORKING_DIR/AnyKernel
+zip -r9 $KERNEL_NAME-${DATE}.zip *
+ZIP=$(echo *.zip)
+
+curl -F document=@$ZIP "https://api.telegram.org/$TG_TOKEN/sendDocument" \
+      -F chat_id="$TG_CHAT_ID" \
+      -F "disable_web_page_preview=true" \
+      -F "parse_mode=html" \
+      -F caption="$KERNEL_NAME
 =======================
 🏚️ Linux version: $KERNEL_VERSION
 🌿 Branch: $BRANCH
@@ -67,23 +73,26 @@ function push() {
 💡 Compiler: $TOOLCHAIN_VERSION
 =======================
 Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
+
 rm -rf *.zip
 }
 
 # Fin Error
-function finerr() {
-    curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendMessage" -d chat_id="$TG_CHAT_ID" \
-	    -d "disable_web_page_preview=true" \
-	    -d "parse_mode=html" \
-        -d text="==============================%0A<b>    Building Kernel AZURE-CLANG Failed [❌]</b>%0A==============================" \
-    curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendSticker" \
-        -d sticker="CAACAgIAAx0CXjGT1gACDRRhYsUKSwZJQFzmR6eKz2aP30iKqQACPgADr8ZRGiaKo_SrpcJQIQQ" \
-        -d chat_id="$TG_CHAT_ID"
-    exit 1
+function FIN-ERROR() {
+curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendMessage" -d chat_id="$TG_CHAT_ID" \
+      -d "disable_web_page_preview=true" \
+      -d "parse_mode=html" \
+      -d text="==============================%0A<b>    Building Kernel PROTON-CLANG Failed!</b>%0A==============================" \
+
+curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendSticker" \
+      -d sticker="CAACAgIAAx0CXjGT1gACDRRhYsUKSwZJQFzmR6eKz2aP30iKqQACPgADr8ZRGiaKo_SrpcJQIQQ" \
+      -d chat_id="$TG_CHAT_ID"
+      
+exit 1
 }
 
 # Info
-function info() {
+function INFO() {
 cd $KERNEL_ROOTDIR
 KERNEL_VERSION=$(cat $KERNEL_ROOTDIR/out/.config | grep Linux/arm64 | cut -d " " -f3)
 UTS_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep UTS_VERSION | cut -d '"' -f2)
@@ -94,11 +103,11 @@ COMMIT_BY="$(git log --pretty=format:'by %an' -1)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 }
 
-env
-check
-compile
+ENVIRONTMENT
+CHECK
+COMPILE
 END=$(date +"%s")
 DIFF=$(($END - $START))
-info
-push
+INFO
+PUSH
  
