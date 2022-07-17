@@ -23,6 +23,37 @@ task:
 
   Environment_script:
       - export DEBIAN_FRONTEND=noninteractive
+      - apt-get update -qqy
+      - apt-get install --no-install-recommends -y
+      - apt-get installbc
+      - apt-get installbison
+      - apt-get installcurl
+      - apt-get installccache
+      - apt-get installca-certificates
+      - apt-get installflex
+      - apt-get installgcc
+      - apt-get installgit
+      - apt-get installglibc-doc
+      - apt-get installgit-lfs
+      - apt-get installgnupg
+      - apt-get installjq
+      - apt-get installlibxml2
+      - apt-get installlibtinfo5
+      - apt-get installlibc6-dev
+      - apt-get installlibssl-dev
+      - apt-get installlibstdc++6
+      - apt-get installmake
+      - apt-get installopenssl
+      - apt-get installpython2
+      - apt-get installrclone
+      - apt-get installssh
+      - apt-get installtar
+      - apt-get installtzdata
+      - apt-get installwget
+      - apt-get installzip && \
+      - apt-get autoremove -qqy && \
+      - apt-get autoclean -qqy
+      - rm -rf /var/lib/apt/lists/*
       - cat /etc/os*
       - env
       - git config --global user.name "$USER_NAME"
