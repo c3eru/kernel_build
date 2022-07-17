@@ -25,32 +25,32 @@ task:
       - export DEBIAN_FRONTEND=noninteractive
       - apt-get update -qqy
       - apt-get install --no-install-recommends -y
-      - apt-get installbc
-      - apt-get installbison
-      - apt-get installcurl
-      - apt-get installccache
-      - apt-get installca-certificates
-      - apt-get installflex
-      - apt-get installgcc
-      - apt-get installgit
-      - apt-get installglibc-doc
-      - apt-get installgit-lfs
-      - apt-get installgnupg
-      - apt-get installjq
-      - apt-get installlibxml2
-      - apt-get installlibtinfo5
-      - apt-get installlibc6-dev
-      - apt-get installlibssl-dev
-      - apt-get installlibstdc++6
-      - apt-get installmake
-      - apt-get installopenssl
-      - apt-get installpython2
-      - apt-get installrclone
-      - apt-get installssh
-      - apt-get installtar
-      - apt-get installtzdata
-      - apt-get installwget
-      - apt-get installzip && \
+      - apt-get install bc
+      - apt-get install bison
+      - apt-get install curl
+      - apt-get install ccache
+      - apt-get install ca-certificates
+      - apt-get install flex
+      - apt-get install gcc
+      - apt-get install git
+      - apt-get install glibc-doc
+      - apt-get install git-lfs
+      - apt-get install gnupg
+      - apt-get install jq
+      - apt-get install libxml2
+      - apt-get install libtinfo5
+      - apt-get install libc6-dev
+      - apt-get install libssl-dev
+      - apt-get install libstdc++6
+      - apt-get install make
+      - apt-get install openssl
+      - apt-get install python2
+      - apt-get install rclone
+      - apt-get install ssh
+      - apt-get install tar
+      - apt-get install tzdata
+      - apt-get install wget
+      - apt-get install zip && \
       - apt-get autoremove -qqy && \
       - apt-get autoclean -qqy
       - rm -rf /var/lib/apt/lists/*
