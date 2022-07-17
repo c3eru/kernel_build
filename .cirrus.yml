@@ -40,3 +40,6 @@ task:
       
   Clang_Xrage_script:
       - ./xrage-compile.sh
+      
+  Clang_Aosp_script:
+      - ./aosp-compile.sh
