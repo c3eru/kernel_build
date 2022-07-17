@@ -23,36 +23,36 @@ task:
 
   Environment_script:
       - export DEBIAN_FRONTEND=noninteractive
-      - apt-get update -qqy
+      - apt-get update -qqy -y
       - apt-get install --no-install-recommends -y
-      - apt-get install bc
-      - apt-get install bison
-      - apt-get install curl
-      - apt-get install ccache
-      - apt-get install ca-certificates
-      - apt-get install flex
-      - apt-get install gcc
-      - apt-get install git
-      - apt-get install glibc-doc
-      - apt-get install git-lfs
-      - apt-get install gnupg
-      - apt-get install jq
-      - apt-get install libxml2
-      - apt-get install libtinfo5
-      - apt-get install libc6-dev
-      - apt-get install libssl-dev
-      - apt-get install libstdc++6
-      - apt-get install make
-      - apt-get install openssl
-      - apt-get install python2
-      - apt-get install rclone
-      - apt-get install ssh
-      - apt-get install tar
-      - apt-get install tzdata
-      - apt-get install wget
-      - apt-get install zip && \
-      - apt-get autoremove -qqy && \
-      - apt-get autoclean -qqy
+      - apt-get install bc -y
+      - apt-get install bison -y
+      - apt-get install curl -y
+      - apt-get install ccache -y
+      - apt-get install ca-certificates -y
+      - apt-get install flex -y
+      - apt-get install gcc -y
+      - apt-get install git -y
+      - apt-get install glibc-doc -y
+      - apt-get install git-lfs -y
+      - apt-get install gnupg -y
+      - apt-get install jq -y
+      - apt-get install libxml2 -y
+      - apt-get install libtinfo5 -y
+      - apt-get install libc6-dev -y
+      - apt-get install libssl-dev -y
+      - apt-get install libstdc++6 -y
+      - apt-get install make -y
+      - apt-get install openssl -y
+      - apt-get install python2 -y
+      - apt-get install rclone -y
+      - apt-get install ssh -y
+      - apt-get install tar -y
+      - apt-get install tzdata -y
+      - apt-get install wget -y
+      - apt-get install zip -y
+      - apt-get autoremove -qqy  -y
+      - apt-get autoclean -qqy -y
       - rm -rf /var/lib/apt/lists/*
       - cat /etc/os*
       - env
