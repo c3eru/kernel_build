@@ -36,3 +36,6 @@ task:
       
   Clang_Azure_script:
       - ./azure-compile.sh
+      
+  Clang_Xrage_script:
+      - ./xrage-compile.sh
