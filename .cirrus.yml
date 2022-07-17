@@ -17,7 +17,7 @@ task:
   name: "Kernel deploy..."
   timeout_in: 2h
   container:
-      image: aarunalr/aosp-build
+      image: xyzuan/xdocker:latest
       cpu: 8
       memory: 32G
 
