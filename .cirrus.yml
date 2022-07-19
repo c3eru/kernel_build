@@ -59,7 +59,7 @@ task:
       - git config --global user.name "$USER_NAME"
       - git config --global user.email "$USER_EMAIL"
       - export TZ=Asia/Jakarta
-
+ 
   Sync_script:
       - ./sync.sh
 
