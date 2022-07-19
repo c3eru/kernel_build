@@ -17,6 +17,7 @@ LLD_VER="$("$CLANG_ROOTDIR"/bin/ld.lld --version | head -n 1)"
 
 DATE=$(date +"%F-%S")
 START=$(date +"%s")
+export PATH="$KERNEL_ROOTDIR/bin:$PATH"
 }
 
 # Checking environtment
@@ -38,10 +39,9 @@ cd ${KERNEL_ROOTDIR}
 
 make -j$(nproc) O=out ARCH=arm64 SUBARCH=arm64 ${DEVICE_DEFCONFIG}
 make -j$(nproc) ARCH=arm64 SUBARCH=arm64 O=out \
-      CC=${CLANG_ROOTDIR}/bin/clang \
-      LD=${CLANG_ROOTDIR}/bin/ld.lld \
-      CROSS_COMPILE=${CLANG_ROOTDIR}/bin/aarch64-linux-gnu- \
-      CROSS_COMPILE_ARM32=${CLANG_ROOTDIR}/bin/arm-linux-gnueabi-
+      CC=clang \
+      CROSS_COMPILE=aarch64-linux-gnu- \
+      CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 
 if ! [ -a "$IMGS" ]; then
 FIN-ERROR
