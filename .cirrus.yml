@@ -20,7 +20,7 @@ task:
       image: xyzuan/xdocker:latest
       cpu: 8
       memory: 32G
-
+ 
   Environment_script:
       - export DEBIAN_FRONTEND=noninteractive
       - apt-get update -qqy -y
