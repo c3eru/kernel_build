@@ -2,7 +2,7 @@
  
 # Main Declaration
 function ENVIRONTMENT() {
-export KERNEL_NAME=PERF-PROTON
+export KERNEL_NAME=KERNEL-PROTON-CLANG
 export KBUILD_BUILD_USER=$BUILD_USER
 export KBUILD_BUILD_HOST=$BUILD_HOST
 export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
@@ -64,11 +64,10 @@ curl -F document=@$ZIP "https://api.telegram.org/$TG_TOKEN/sendDocument" \
       -F "parse_mode=html" \
       -F caption="$KERNEL_NAME
 =======================
-🏚️ Linux version: $KERNEL_VERSION
+🐧 Linux version: $KERNEL_VERSION
 🌿 Branch: $BRANCH
 🎁 Top commit: $LATEST_COMMIT
-👩‍💻 Commit author: $COMMIT_BY
-🐧 UTS version: $UTS_VERSION
+👩‍💻 Commit author by: $COMMIT_BY
 💡 Compiler: $TOOLCHAIN_VERSION
 =======================
 Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
@@ -94,11 +93,10 @@ exit 1
 function INFO() {
 cd $KERNEL_ROOTDIR
 KERNEL_VERSION=$(cat $KERNEL_ROOTDIR/out/.config | grep Linux/arm64 | cut -d " " -f3)
-UTS_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep UTS_VERSION | cut -d '"' -f2)
 TOOLCHAIN_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep LINUX_COMPILER | cut -d '"' -f2)
 TRIGGER_SHA="$(git rev-parse HEAD)"
 LATEST_COMMIT="$(git log --pretty=format:'%s' -1)"
-COMMIT_BY="$(git log --pretty=format:'by %an' -1)"
+COMMIT_BY="$(git log --pretty=format:'%an' -1)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 }
 

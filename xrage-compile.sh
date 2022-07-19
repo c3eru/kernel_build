@@ -2,7 +2,7 @@
  
 # Main Declaration
 function ENVIRONTMENT() {
-export KERNEL_NAME=PERF-XRAGE
+export KERNEL_NAME=KERNEL-XRAGE-CLANG
 export KBUILD_BUILD_USER=$BUILD_USER
 export KBUILD_BUILD_HOST=$BUILD_HOST
 export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
@@ -64,11 +64,10 @@ curl -F document=@$ZIP "https://api.telegram.org/$TG_TOKEN/sendDocument" \
       -F "parse_mode=html" \
       -F caption="$KERNEL_NAME
 =======================
-🏚️ Linux version: $KERNEL_VERSION
+🐧 Linux version: $KERNEL_VERSION
 🌿 Branch: $BRANCH
 🎁 Top commit: $LATEST_COMMIT
-👩‍💻 Commit author: $COMMIT_BY
-🐧 UTS version: $UTS_VERSION
+👩‍💻 Commit author by: $COMMIT_BY
 💡 Compiler: $TOOLCHAIN_VERSION
 =======================
 Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
@@ -81,7 +80,7 @@ function FIN-ERROR() {
 curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendMessage" -d chat_id="$TG_CHAT_ID" \
       -d "disable_web_page_preview=true" \
       -d "parse_mode=html" \
-      -d text="==============================%0A<b>    Building Kernel PROTON-CLANG Failed!</b>%0A==============================" \
+      -d text="==============================%0A<b>    Building Kernel XRAGE-CLANG Failed!</b>%0A==============================" \
 
 curl -s -X POST "https://api.telegram.org/$TG_TOKEN/sendSticker" \
       -d sticker="CAACAgIAAx0CXjGT1gACDRRhYsUKSwZJQFzmR6eKz2aP30iKqQACPgADr8ZRGiaKo_SrpcJQIQQ" \
@@ -94,11 +93,10 @@ exit 1
 function INFO() {
 cd $KERNEL_ROOTDIR
 KERNEL_VERSION=$(cat $KERNEL_ROOTDIR/out/.config | grep Linux/arm64 | cut -d " " -f3)
-UTS_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep UTS_VERSION | cut -d '"' -f2)
 TOOLCHAIN_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep LINUX_COMPILER | cut -d '"' -f2)
 TRIGGER_SHA="$(git rev-parse HEAD)"
 LATEST_COMMIT="$(git log --pretty=format:'%s' -1)"
-COMMIT_BY="$(git log --pretty=format:'by %an' -1)"
+COMMIT_BY="$(git log --pretty=format:'%an' -1)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 }
 
