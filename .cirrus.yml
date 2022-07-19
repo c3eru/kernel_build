@@ -63,14 +63,17 @@ task:
   Sync_script:
       - ./sync.sh
 
-  Clang_Proton_script:
+  Clang-Vortex_script:
+      - ./vortex-compile.sh
+
+  Clang-Proton_script:
       - ./proton-compile.sh
       
-  Clang_Azure_script:
+  Clang-Azure_script:
       - ./azure-compile.sh
       
-  Clang_Xrage_script:
+  Clang-Xrage_script:
       - ./xrage-compile.sh
       
-  Clang_Gf_script:
+  Clang-Gf_script:
       - ./gf-compile.sh
