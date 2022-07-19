@@ -71,3 +71,6 @@ task:
       
   Clang_Xrage_script:
       - ./xrage-compile.sh
+      
+  Clang_Gf_script:
+      - ./gf-compile.sh

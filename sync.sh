@@ -13,4 +13,6 @@ git clone --depth=1 https://github.com/kdrag0n/proton-clang $CIRRUS_WORKING_DIR/
 git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang $CIRRUS_WORKING_DIR/AZURE-CLANG
 # Xrage Clang ---
 git clone --depth=1 https://github.com/xyz-prjkt/xRageTC-clang $CIRRUS_WORKING_DIR/XRAGE-CLANG
+# Greenforce Clang ---
+git clone --depth=1 https://github.com/greenforce-project/clang-llvm $CIRRUS_WORKING_DIR/GF-CLANG
 	
