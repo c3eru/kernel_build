@@ -63,9 +63,6 @@ task:
   Sync_script:
       - ./sync.sh
 
-  Clang-Vortex_script:
-      - ./vortex-compile.sh
-
   Clang-Proton_script:
       - ./proton-compile.sh
       
