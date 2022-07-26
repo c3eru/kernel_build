@@ -17,7 +17,7 @@ task:
   name: "Kernel deploy..."
   timeout_in: 2h
   container:
-      image: xyzuan/xdocker:latest
+      image: ghcr.io/sushrut1101/docker:arch
       cpu: 8
       memory: 32G
  
