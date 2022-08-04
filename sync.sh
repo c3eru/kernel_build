@@ -15,6 +15,8 @@ git clone --depth=1 $GH_TOKEN@github.com/c3eru/$SOURCE_GH -b MIUI-CITRUS $CIRRUS
  git clone --depth=1 https://github.com/xyz-prjkt/xRageTC-clang $CIRRUS_WORKING_DIR/XRAGE-CLANG
 # Greenforce Clang ---
  git clone --depth=1 https://github.com/greenforce-project/clang-llvm $CIRRUS_WORKING_DIR/GF-CLANG
+# Lunatic Clang ---
+ git clone --depth=1 https://gitlab.com/Herobuxx/lunatic-clang.git $CIRRUS_WORKING_DIR/LUNATIC-CLANG
 
 
 	

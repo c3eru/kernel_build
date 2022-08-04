@@ -74,3 +74,6 @@ task:
       
   Clang-Gf_script:
       - ./gf-compile.sh
+      
+  Clang-Lunatic_script:
+      - ./lunatic-compile.sh
