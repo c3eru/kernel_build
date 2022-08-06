@@ -4,7 +4,7 @@ git config --global user.name "$USER_NAME"
 git config --global user.email "$USER_EMAIL"
  
 # Kernel Sources!
-git clone --depth=1 $GH_TOKEN@github.com/c3eru/$SOURCE_GH -b MIUI-CITRUS $CIRRUS_WORKING_DIR/KERNEL
+git clone --depth=1 https://github.com/c3eru/android_kernel_xiaomi_ginkgo $CIRRUS_WORKING_DIR/KERNEL
 
 # Tool Chain
 # Proton Clang ---
