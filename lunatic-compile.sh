@@ -2,14 +2,14 @@
  
 # Main Declaration
 function ENVIRONTMENT() {
-export KERNEL_NAME=KERNEL-LUNATIC-CLANG
+export KERNEL_NAME=GINKGO-LUNATIC-CLANG
 export KBUILD_BUILD_USER=$BUILD_USER
 export KBUILD_BUILD_HOST=$BUILD_HOST
 export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
 
 KERNEL_ROOTDIR=$CIRRUS_WORKING_DIR/KERNEL
-DEVICE_DEFCONFIG=vendor/citrus-perf_defconfig
-IMGS=$KERNEL_ROOTDIR/out/arch/arm64/boot/Image
+DEVICE_DEFCONFIG=vendor/sixteen_defconfig
+IMGS=$KERNEL_ROOTDIR/out/arch/arm64/boot/Image.gz-dtb
 
 CLANG_ROOTDIR=$CIRRUS_WORKING_DIR/LUNATIC-CLANG
 CLANG_VER="$("$CLANG_ROOTDIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
