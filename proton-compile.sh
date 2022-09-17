@@ -54,7 +54,7 @@ if ! [ -a "$IMGS" ]; then
 FIN-ERROR
 fi
 
-git clone --depth=1 $GH_TOKEN@github.com/c3eru/anykernel -b ginkgo $CIRRUS_WORKING_DIR/AnyKernel
+git clone --depth=1 https://github.com/ghostrider-reborn/AnyKernel3 -b master $CIRRUS_WORKING_DIR/AnyKernel
 
 cp $IMGS $CIRRUS_WORKING_DIR/AnyKernel
 cp $KERNEL_ROOTDIR/out/arch/arm64/boot/dtbo.img $CIRRUS_WORKING_DIR/AnyKernel
