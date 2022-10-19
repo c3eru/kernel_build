@@ -1,5 +1,6 @@
 env: 
 #  ENCRYPTED
+    CREDENTIALS: "ENCRYPTED[76765d82b77bf43867704ff2082205d31213640a6241f6ca4d48a7c57bed9311010c048dc92caf180d7b8f1380f19fca]"
     USER_NAME: "ENCRYPTED[41352a238460d03adfac9ebfbdbc78c55bdb6b3be1b61ae21531a60fbeb297cbbd168cba0a11bd67d4ab411eaefe6db7]"
     USER_EMAIL: "ENCRYPTED[9f41f213a0353f14f93a5ba3555fe72a6870bd65c863e065a81c9721e287c9d39bfc15d1cd376ad926812d9d5ced41a5]"
     BUILD_USER: "ENCRYPTED[07456d2b26ed65367293a86f782994d6dd2cbf3dfd84c8f7fb78d6ad3da76c0e100cb389ef04993c3eb152a23af0ee75]"
@@ -58,6 +59,9 @@ task:
       - env
       - git config --global user.name "$USER_NAME"
       - git config --global user.email "$USER_EMAIL"
+      - git config --global user.email "yyprjkt@gmail.com"
+      - echo "$CREDENTIALS" > ~/.git-credentials
+      - git config --global credential.helper store --file=~/.git-credentials
       - export TZ=Asia/Jakarta
  
   Sync_script:
