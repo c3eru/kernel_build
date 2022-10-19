@@ -67,19 +67,6 @@ task:
   Sync_script:
       - ./sync.sh
 
-  Clang-Proton_script:
-      - ./proton-compile.sh
-      
-  Clang-Azure_script:
-      - ./azure-compile.sh
-      
-  Clang-Xrage_script:
-      - ./xrage-compile.sh
-      
-  Clang-Gf_script:
-      - ./gf-compile.sh
-      
-  Clang-Lunatic_script:
-      - ./lunatic-compile.sh
+  
 
 # Time : 10:09 WIB
