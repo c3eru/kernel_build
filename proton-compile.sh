@@ -10,7 +10,7 @@ export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
 KERNEL_ROOTDIR=$CIRRUS_WORKING_DIR/KERNEL
 DEVICE_DEFCONFIG=vendor/citrus-perf_defconfig
 IMGS=$KERNEL_ROOTDIR/out/arch/arm64/boot/Image
-
+PATH="$CIRRUS_WORKING_DIR/PROTON-CLANG/bin/:$CIRRUS_WORKING_DIR/GCC/bin:$CIRRUS_WORKING_DIR/GCC32/bin:$PATH"
 CLANG_ROOTDIR=$CIRRUS_WORKING_DIR/PROTON-CLANG
 CLANG_VER="$("$CLANG_ROOTDIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
 LLD_VER="$("$CLANG_ROOTDIR"/bin/ld.lld --version | head -n 1)"
@@ -38,9 +38,15 @@ cd ${KERNEL_ROOTDIR}
 
 make -j$(nproc) O=out ARCH=arm64 SUBARCH=arm64 ${DEVICE_DEFCONFIG}
 make -j$(nproc) ARCH=arm64 SUBARCH=arm64 O=out \
-      CC=${CLANG_ROOTDIR}/bin/clang \
-      CROSS_COMPILE=${CLANG_ROOTDIR}/bin/aarch64-linux-gnu- \
-      CROSS_COMPILE_ARM32=${CLANG_ROOTDIR}/bin/arm-linux-gnueabi-
+      CC=clang \
+      AR=llvm-ar \
+      OBJDUMP=llvm-objdump \
+      STRIP=llvm-strip \
+      NM=llvm-nm \
+      OBJCOPY=llvm-objcopy \
+      CROSS_COMPILE=aarch64-linux-gnu- \
+      CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+      LD=ld.lld
 
 if ! [ -a "$IMGS" ]; then
 FIN-ERROR
