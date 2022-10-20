@@ -67,6 +67,9 @@ task:
   Sync_script:
       - ./sync.sh
 
+  Clang-Proton_script:
+      - ./proton-compile.sh
+
   
 
 # Time : 10:09 WIB
