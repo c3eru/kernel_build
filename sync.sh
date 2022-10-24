@@ -4,7 +4,7 @@ git config --global user.name "$USER_NAME"
 git config --global user.email "$USER_EMAIL"
  
 # Kernel Sources!
-git clone --depth=1 https://github.com/c3eru/A10 $CIRRUS_WORKING_DIR/KERNEL
+git clone --depth=1 https://github.com/c3eru/A10 -b citrus-stg $CIRRUS_WORKING_DIR/KERNEL
 
 # Tool Chain
 # Proton Clang ---
